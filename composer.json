@@ -1,0 +1,10 @@
+{
+    "name": "root/reeditor",
+    "authors": [
+        {
+            "name": "Benediktas Rukas",
+            "email": "brukas132@gmail.com"
+        }
+    ],
+    "require": {}
+}
