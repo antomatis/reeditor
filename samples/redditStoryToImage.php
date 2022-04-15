@@ -3,9 +3,9 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 $reeditor = new Reeditor();
 
 $input = [
-    'reddit_url' => 'https://www.reddit.com/r/AmItheAsshole/comments/mk8w2s/aita_for_making_neighbor_remove_the_eggs_he_put/',
-    'max_comment_count' => 15,
-    'target_image_count' => 15,
+    'reddit_url' => 'https://www.reddit.com/r/MaliciousCompliance/comments/u3668f/our_landlord_told_me_go_ahead_call_the_city/',
+    'max_comment_count' => 50,
+    'target_image_count' => 10,
 ];
 
 $output = $reeditor->storyToImages(

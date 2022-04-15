@@ -29,7 +29,7 @@ class Reeditor
         foreach ($comments as $comment) {
             $imageFiles[] = $this->createImageFromComment($comment);
         }
-       return $imageFiles;
+        return $imageFiles;
     }
 
     function parseComments($comments, $max_comment_count = null)
@@ -167,10 +167,12 @@ class Reeditor
                 $margin['left'],
                 20
             )['height'];
+        } else {
+            $pos['y'] += 15;
         }
         $paragraphs = explode("\n\n", $text);
 
-        foreach ($paragraphs as $paragraph) {
+        foreach ($paragraphs as $key => $paragraph) {
             $pos['y'] += $this->drawMainText(
                 __DIR__ . '/lib/fonts/verdana.ttf',
                 'black',
@@ -181,14 +183,14 @@ class Reeditor
                 $margin['left'],
                 $pos['y'] - 15
             )['height'];
-            if (count($paragraphs) > 1) {
+            if (count($paragraphs) >  $key +1) {
                 $pos['y'] += 58;
             }
         }
         $this->image->cropImage(700, $pos['y'] + 25, 0, 0);
         $this->image->borderImage('#E3E3E3', 1, 1);
         $this->image->setImageFormat('png');
-        $imageFile = $this->imageLibrary . md5(microtime(true)) . '.png';
+        $imageFile = $this->imageLibrary . 'author_'. md5(microtime(true)) . '.png';
         file_put_contents($imageFile, $this->image);
         return $imageFile;
     }
@@ -241,7 +243,7 @@ class Reeditor
 
         //IF WE HAVE OP REPLY //
         if (isset($comment['op_reply'])) {
-//            $pos['y'] += 21;
+            $pos['y'] += 10;
             $startLineAtY = $pos['y'];
             //OP Reply Author line//
             $pos['x'] += $this->drawCommentAuthor(
@@ -276,7 +278,7 @@ class Reeditor
         $this->image->cropImage(700, $pos['y'] + $margin['top'], 0, 0);
         $this->image->borderImage('#E3E3E3', 1, 1);
         $this->image->setImageFormat('png');
-        $imageFile = $this->imageLibrary . md5(microtime(true)) . '.png';
+        $imageFile = $this->imageLibrary . 'comment_'. md5(microtime(true)) . '.png';
         file_put_contents($imageFile, $this->image);
         return $imageFile;
     }
